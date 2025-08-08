@@ -2,11 +2,11 @@ package org.yl.auth.spring.jpa.login;
 
 import org.springframework.stereotype.Component;
 import org.yl.auth.model.YoungLifeUserModel;
-import org.yl.auth.spi.verifier.VerifyYoungLifeUserByEmailSpi;
+import org.yl.auth.spi.verifier.GetYoungLifeUserByEmailSpi;
 import org.yl.auth.spring.jpa.JpaYoungLifeUserRepository;
 
 @Component
-public class AuthorizationYoungLifeUserAdapterSpi implements VerifyYoungLifeUserByEmailSpi{
+public class AuthorizationYoungLifeUserAdapterSpi implements GetYoungLifeUserByEmailSpi {
     private final JpaYoungLifeUserRepository jpaYoungLifeUserRepository;
 
     public AuthorizationYoungLifeUserAdapterSpi(JpaYoungLifeUserRepository jpaYoungLifeUserRepository) {
@@ -14,7 +14,7 @@ public class AuthorizationYoungLifeUserAdapterSpi implements VerifyYoungLifeUser
     }
 
     @Override
-    public YoungLifeUserModel loadByEmail(String email) {
+    public YoungLifeUserModel getUserByEmail(String email) {
         return jpaYoungLifeUserRepository.findYoungLifeUserByEmail(email)
                 .map(entity->YoungLifeUserModel
                         .builder()

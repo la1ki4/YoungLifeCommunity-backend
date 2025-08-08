@@ -11,11 +11,10 @@ import org.yl.auth.api.login.AuthorizationYoungLifeUserApi;
 @RequestMapping("/auth")
 @AllArgsConstructor
 public class AuthorizationYoungLifeUserController {
-    private final AuthorizationYoungLifeUserApi authorizationYoungLifeUserUseCase;
+    private final AuthorizationYoungLifeUserApi authorizationYoungLifeUserApi;
 
     @PostMapping("/login")
     public String login(@RequestParam String email, @RequestParam String password) {
-        boolean success = authorizationYoungLifeUserUseCase.authenticateYoungLifeUser(email, password);
-        return success ? "Login success" : "Invalid credentials";
+        return authorizationYoungLifeUserApi.generateTokenForYoungLifeUser(email, password);
     }
 }

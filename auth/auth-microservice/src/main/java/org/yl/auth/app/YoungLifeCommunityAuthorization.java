@@ -5,13 +5,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.yl.auth.api.login.AuthorizationYoungLifeUserApi;
 import org.yl.auth.api.register.RegistrationYoungLifeUserApi;
 import org.yl.auth.spi.register.RegistrationYoungLifeUserSpi;
-import org.yl.auth.spi.verifier.VerifyYoungLifeUserByEmailSpi;
+import org.yl.auth.spi.verifier.GetYoungLifeUserByEmailSpi;
 import org.yl.auth.usecase.login.AuthorizationYoungLifeUserUseCase;
 import org.yl.auth.usecase.register.RegistrationYoungLifeUserUseCase;
+import org.yl.auth.util.jwt.JwtUtil;
 
 @SpringBootApplication(scanBasePackages = {"org.yl.auth"})
 @EnableJpaRepositories(basePackages = "org.yl.auth.spring.jpa")
@@ -22,14 +24,15 @@ public class YoungLifeCommunityAuthorization {
     }
 
     @Bean
-    public AuthorizationYoungLifeUserApi authorizationYoungLifeUserApi(VerifyYoungLifeUserByEmailSpi verifyYoungLifeUserByEmailSpi, PasswordEncoder encoder) {
-        return new AuthorizationYoungLifeUserUseCase(verifyYoungLifeUserByEmailSpi, encoder);
+    public AuthorizationYoungLifeUserApi authorizationYoungLifeUserApi(JwtUtil jwtUtils,
+                                                                       AuthenticationManager authenticationManager) {
+        return new AuthorizationYoungLifeUserUseCase(jwtUtils, authenticationManager);
     }
 
     @Bean
-    public RegistrationYoungLifeUserApi registrationYoungLifeUserApi(VerifyYoungLifeUserByEmailSpi verifyYoungLifeUserByEmailSpi,
+    public RegistrationYoungLifeUserApi registrationYoungLifeUserApi(GetYoungLifeUserByEmailSpi getYoungLifeUserByEmailSpi,
                                                                      RegistrationYoungLifeUserSpi registrationYoungLifeUserSpi,
                                                                      PasswordEncoder encoder) {
-        return new RegistrationYoungLifeUserUseCase(verifyYoungLifeUserByEmailSpi, registrationYoungLifeUserSpi ,encoder);
+        return new RegistrationYoungLifeUserUseCase(getYoungLifeUserByEmailSpi, registrationYoungLifeUserSpi ,encoder);
     }
 }
