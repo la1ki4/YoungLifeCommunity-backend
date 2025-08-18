@@ -22,7 +22,7 @@ public class AuthorizationYoungLifeUserController {
                 requestData.getPassword());
         ResponseCookie cookie = ResponseCookie.from("jwt", jwtToken)
                 .httpOnly(true)
-                .secure(false) // true in production (https)
+                .secure(false)
                 .path("/")
                 .maxAge(24*60*60)
                 .build();
