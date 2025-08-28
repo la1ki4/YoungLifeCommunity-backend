@@ -20,7 +20,7 @@ public class YoungLifeUserDetailsService  implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
        YoungLifeUserModel youngLifeUserModel = authorizationYoungLifeUserAdapterSpi.getUserByEmail(email);
        if (youngLifeUserModel == null) {
-           throw new UsernameNotFoundException("User not found wit email: " + email);
+           throw new UsernameNotFoundException("User not found with email: " + email);
        }
        return new User(
                youngLifeUserModel.getEmail(),

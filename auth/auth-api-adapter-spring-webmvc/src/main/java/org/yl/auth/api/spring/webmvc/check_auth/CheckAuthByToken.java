@@ -3,10 +3,7 @@ package org.yl.auth.api.spring.webmvc.check_auth;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.yl.auth.util.jwt.JwtUtil;
 
 import java.util.Map;
@@ -14,6 +11,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/auth")
 @AllArgsConstructor
+@CrossOrigin
 public class CheckAuthByToken {
     private final JwtUtil validateToken;
 

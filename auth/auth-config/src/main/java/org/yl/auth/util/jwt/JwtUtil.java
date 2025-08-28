@@ -4,6 +4,7 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -11,11 +12,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 @Component
+@PropertySource("classpath:jwt.properties")
 public class JwtUtil {
     @Value("${jwt.secret}")
     private String jwtSecret;
     @Value("${jwt.expiration}")
-    private int jwtExpirationMs;
+    private long jwtExpirationMs;
     private SecretKey key;
 
     @PostConstruct

@@ -13,6 +13,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/auth")
 @AllArgsConstructor
+@CrossOrigin
 public class AuthorizationYoungLifeUserController {
     private final AuthorizationYoungLifeUserApi authorizationYoungLifeUserApi;
 

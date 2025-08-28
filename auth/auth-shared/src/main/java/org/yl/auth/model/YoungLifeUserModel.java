@@ -1,14 +1,12 @@
 package org.yl.auth.model;
 
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.sql.Timestamp;
 import java.util.UUID;
 
-@Getter
-@Setter
+@Data
 @Builder
 public class YoungLifeUserModel {
     private UUID id;

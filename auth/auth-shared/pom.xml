@@ -9,16 +9,4 @@
     <artifactId>auth-shared</artifactId>
     <name>Archetype - auth-shared</name>
     <url>http://maven.apache.org</url>
-
-    <properties>
-        <lombok.version>1.18.38</lombok.version>
-    </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-        </dependency>
-    </dependencies>
 </project>
