@@ -11,7 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.yl.auth.api.login.AuthorizationYoungLifeUserApi;
 import org.yl.auth.api.register.RegistrationYoungLifeUserApi;
 import org.yl.auth.spi.register.RegistrationYoungLifeUserSpi;
-import org.yl.auth.spi.verifier.GetYoungLifeUserByEmailSpi;
+import org.yl.auth.spi.verifier.YoungLifeUserByEmailSpi;
 import org.yl.auth.usecase.login.AuthorizationYoungLifeUserUseCase;
 import org.yl.auth.usecase.register.RegistrationYoungLifeUserUseCase;
 import org.yl.auth.util.jwt.JwtProperties;
@@ -33,9 +33,9 @@ public class YoungLifeCommunityAuthorization {
     }
 
     @Bean
-    public RegistrationYoungLifeUserApi registrationYoungLifeUserApi(GetYoungLifeUserByEmailSpi getYoungLifeUserByEmailSpi,
+    public RegistrationYoungLifeUserApi registrationYoungLifeUserApi(YoungLifeUserByEmailSpi youngLifeUserByEmailSpi,
                                                                      RegistrationYoungLifeUserSpi registrationYoungLifeUserSpi,
                                                                      PasswordEncoder encoder) {
-        return new RegistrationYoungLifeUserUseCase(getYoungLifeUserByEmailSpi, registrationYoungLifeUserSpi ,encoder);
+        return new RegistrationYoungLifeUserUseCase(youngLifeUserByEmailSpi, registrationYoungLifeUserSpi ,encoder);
     }
 }

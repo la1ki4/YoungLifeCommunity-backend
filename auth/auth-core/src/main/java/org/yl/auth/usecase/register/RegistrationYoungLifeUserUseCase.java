@@ -1,24 +1,20 @@
 package org.yl.auth.usecase.register;
 
-import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.yl.auth.api.register.RegistrationYoungLifeUserApi;
 import org.yl.auth.model.YoungLifeUserModel;
 import org.yl.auth.spi.register.RegistrationYoungLifeUserSpi;
-import org.yl.auth.spi.verifier.GetYoungLifeUserByEmailSpi;
+import org.yl.auth.spi.verifier.YoungLifeUserByEmailSpi;
 
 import java.sql.Timestamp;
 
-@AllArgsConstructor
-public class RegistrationYoungLifeUserUseCase implements RegistrationYoungLifeUserApi {
-    private final GetYoungLifeUserByEmailSpi userRepository;
-    private final RegistrationYoungLifeUserSpi registerUserPort;
-    private final PasswordEncoder passwordEncoder;
-
+public record RegistrationYoungLifeUserUseCase(YoungLifeUserByEmailSpi userRepository,
+                                               RegistrationYoungLifeUserSpi registerUserPort,
+                                               PasswordEncoder passwordEncoder) implements RegistrationYoungLifeUserApi {
     @Override
     public YoungLifeUserModel registerYoungLifeUser(String email, String password, String firstName, String lastName) {
         YoungLifeUserModel youngLifeUserModel = userRepository.getUserByEmail(email);
-        if(youngLifeUserModel == null) {
+        if (youngLifeUserModel == null) {
             youngLifeUserModel = registerUserPort.registerYoungLifeUser(
                     YoungLifeUserModel.builder()
                             .email(email)
