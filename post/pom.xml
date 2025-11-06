@@ -18,6 +18,7 @@
         <module>post-core</module>
         <module>post-spi-adapter-spring-jpa</module>
         <module>post-spi</module>
+        <module>post-config</module>
     </modules>
 
     <name>Archetype - post</name>

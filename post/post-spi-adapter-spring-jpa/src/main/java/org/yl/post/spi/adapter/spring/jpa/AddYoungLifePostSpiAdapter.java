@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.yl.post.model.YoungLifePostModel;
 import org.yl.post.spi.AddYoungLifePostSpi;
+import org.yl.post.spi.adapter.spring.jpa.mapper.YoungLifeUserAndPostMapper;
 
 import java.util.Optional;
 
@@ -15,8 +16,8 @@ public class AddYoungLifePostSpiAdapter implements AddYoungLifePostSpi {
 
     @Override
     public Optional<YoungLifePostModel> addYoungLifePostSpi(YoungLifePostModel postData) {
-        YoungLifePostEntity post = YoungLifePostEntity.fromModel(postData);
-        YoungLifePostEntity saved = youngLifePostRepository.save(post);
-        return Optional.of(saved.toModel());
+        YoungLifePostEntity postEntity = YoungLifeUserAndPostMapper.toEntity(postData);
+        YoungLifePostEntity savedPost = youngLifePostRepository.save(postEntity);
+        return Optional.of(YoungLifeUserAndPostMapper.toModel(savedPost));
     }
 }

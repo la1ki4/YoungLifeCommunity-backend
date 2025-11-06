@@ -16,6 +16,11 @@
         </dependency>
         <dependency>
             <groupId>org.yl</groupId>
+            <artifactId>post-shared</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.yl</groupId>
             <artifactId>post-spi</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

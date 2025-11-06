@@ -3,7 +3,9 @@ package org.yl.post.usecase;
 import org.springframework.web.multipart.MultipartFile;
 import org.yl.post.api.AddYoungLifePostApi;
 import org.yl.post.model.YoungLifePostModel;
+import org.yl.post.model.YoungLifeUserModel;
 import org.yl.post.spi.AddYoungLifePostSpi;
+import org.yl.post.spi.YoungLifeUserByEmailSpi;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,11 +14,11 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-public record AddYoungLifePostUseCase (AddYoungLifePostSpi postRepository) implements AddYoungLifePostApi {
+public record AddYoungLifePostUseCase (AddYoungLifePostSpi postRepository, YoungLifeUserByEmailSpi userRepository) implements AddYoungLifePostApi {
     private static final String UPLOAD_DIR = "media/";
 
     @Override
-    public Optional<YoungLifePostModel> addNewPostApi(String description, MultipartFile mediaFile) throws IOException {
+    public Optional<YoungLifePostModel> addNewPostApi(String description, MultipartFile mediaFile, String userEmail) throws IOException {
 
         Path uploadPath = Paths.get(UPLOAD_DIR);
         if (!Files.exists(uploadPath)) {
@@ -28,6 +30,8 @@ public record AddYoungLifePostUseCase (AddYoungLifePostSpi postRepository) imple
 
         Files.copy(mediaFile.getInputStream(), filePath);
 
+        YoungLifeUserModel user = userRepository.getYoungLifeUserByEmail(userEmail);
+
         return postRepository.addYoungLifePostSpi(YoungLifePostModel.builder()
                         .description(description)
                         .uploadedAt(LocalDateTime.now())
@@ -35,6 +39,7 @@ public record AddYoungLifePostUseCase (AddYoungLifePostSpi postRepository) imple
                         .contentType(mediaFile.getContentType())
                         .filePath(filePath.toString())
                         .fileName(fileName)
+                        .user(user)
                         .build());
     }
 }

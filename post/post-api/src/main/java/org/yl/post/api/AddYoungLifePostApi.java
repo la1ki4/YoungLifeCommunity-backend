@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @FunctionalInterface
 public interface AddYoungLifePostApi {
-    Optional<YoungLifePostModel> addNewPostApi(String description, MultipartFile media) throws IOException;
+    Optional<YoungLifePostModel> addNewPostApi(String description, MultipartFile media, String userEmail) throws IOException;
 }

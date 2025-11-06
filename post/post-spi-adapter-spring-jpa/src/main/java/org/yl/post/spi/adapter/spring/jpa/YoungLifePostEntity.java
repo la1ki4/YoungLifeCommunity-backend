@@ -3,7 +3,6 @@ package org.yl.post.spi.adapter.spring.jpa;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.yl.post.model.YoungLifePostModel;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -29,28 +28,7 @@ public class YoungLifePostEntity {
     private byte[] fileData;
     @Column(name = "uploaded_at")
     private LocalDateTime uploadedAt;
-
-    public static YoungLifePostEntity fromModel(YoungLifePostModel model){
-        YoungLifePostEntity entity = new YoungLifePostEntity();
-        entity.id = model.getId();
-        entity.filePath = model.getFilePath();
-        entity.description = model.getDescription();
-        entity.fileName = model.getFileName();
-        entity.contentType = model.getContentType();
-        entity.fileData = model.getFileData();
-        entity.uploadedAt = model.getUploadedAt();
-        return entity;
-    }
-
-    public YoungLifePostModel toModel(){
-        return YoungLifePostModel.builder()
-                .id(id)
-                .filePath(filePath)
-                .contentType(contentType)
-                .description(description)
-                .fileName(fileName)
-                .fileData(fileData)
-                .uploadedAt(uploadedAt)
-                .build();
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private YoungLifeUserEntity user;
 }
