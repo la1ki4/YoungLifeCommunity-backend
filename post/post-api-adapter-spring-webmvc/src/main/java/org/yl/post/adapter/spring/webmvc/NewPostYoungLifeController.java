@@ -8,6 +8,7 @@ import org.yl.post.CookiesHolder;
 import org.yl.post.JwtValidator;
 import org.yl.post.api.AddYoungLifePostApi;
 import java.io.IOException;
+import java.util.Map;
 
 @RestController
 @AllArgsConstructor
@@ -29,7 +30,7 @@ public class NewPostYoungLifeController {
             }
             String userEmail = jwtValidator.extractEmail(token);
             addYoungLifePostApi.addNewPostApi(description, media, userEmail);
-            return ResponseEntity.ok("OK");
+            return ResponseEntity.ok(Map.of("status", "OK"));
         } catch (Exception exception){
             return ResponseEntity.status(500).body("Error creating post: " + exception.getMessage());
         }
