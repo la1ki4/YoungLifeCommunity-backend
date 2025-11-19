@@ -1,9 +1,8 @@
-package org.yl.post.spi.adapter.spring.jpa;
+package org.yl.post.spi.adapter.spring.jpa.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.yl.post.model.YoungLifeUserModel;
 
 import java.sql.Timestamp;
 import java.util.List;

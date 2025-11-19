@@ -16,6 +16,7 @@ import java.util.Optional;
 
 public record AddYoungLifePostUseCase (AddYoungLifePostSpi postRepository, YoungLifeUserByEmailSpi userRepository) implements AddYoungLifePostApi {
     private static final String UPLOAD_DIR = "media/";
+    private static final String DOMAIN = "http://localhost:8081/";
 
     @Override
     public Optional<YoungLifePostModel> addNewPostApi(String description, MultipartFile mediaFile, String userEmail) throws IOException {
@@ -29,7 +30,6 @@ public record AddYoungLifePostUseCase (AddYoungLifePostSpi postRepository, Young
         Path filePath = uploadPath.resolve(fileName);
 
         Files.copy(mediaFile.getInputStream(), filePath);
-
         YoungLifeUserModel user = userRepository.getYoungLifeUserByEmail(userEmail);
 
         return postRepository.addYoungLifePostSpi(YoungLifePostModel.builder()
@@ -37,7 +37,7 @@ public record AddYoungLifePostUseCase (AddYoungLifePostSpi postRepository, Young
                         .uploadedAt(LocalDateTime.now())
                         .fileData(mediaFile.getBytes())
                         .contentType(mediaFile.getContentType())
-                        .filePath(filePath.toString())
+                        .filePath(DOMAIN + filePath)
                         .fileName(fileName)
                         .user(user)
                         .build());

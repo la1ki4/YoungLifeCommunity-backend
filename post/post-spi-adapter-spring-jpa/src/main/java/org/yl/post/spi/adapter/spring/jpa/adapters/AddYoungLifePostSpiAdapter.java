@@ -1,10 +1,12 @@
-package org.yl.post.spi.adapter.spring.jpa;
+package org.yl.post.spi.adapter.spring.jpa.adapters;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.yl.post.model.YoungLifePostModel;
 import org.yl.post.spi.AddYoungLifePostSpi;
-import org.yl.post.spi.adapter.spring.jpa.mapper.YoungLifeUserAndPostMapper;
+import org.yl.post.spi.adapter.spring.jpa.entities.YoungLifePostEntity;
+import org.yl.post.spi.adapter.spring.jpa.mappers.YoungLifeUserAndPostMapper;
+import org.yl.post.spi.adapter.spring.jpa.repositories.JpaYoungLifePostRepository;
 
 import java.util.Optional;
 

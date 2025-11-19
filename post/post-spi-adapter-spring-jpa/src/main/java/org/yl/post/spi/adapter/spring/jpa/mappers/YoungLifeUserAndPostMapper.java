@@ -1,9 +1,8 @@
-package org.yl.post.spi.adapter.spring.jpa.mapper;
+package org.yl.post.spi.adapter.spring.jpa.mappers;
 
 import org.yl.post.model.*;
-import org.yl.post.spi.adapter.spring.jpa.*;
-
-import java.util.Optional;
+import org.yl.post.spi.adapter.spring.jpa.entities.YoungLifePostEntity;
+import org.yl.post.spi.adapter.spring.jpa.entities.YoungLifeUserEntity;
 
 public class YoungLifeUserAndPostMapper {
 
