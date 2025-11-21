@@ -38,7 +38,6 @@ public class YoungLifeUserAndPostMapper {
         entity.setDescription(model.getDescription());
         entity.setFilePath(model.getFilePath());
         entity.setContentType(model.getContentType());
-        entity.setFileData(model.getFileData());
         entity.setUploadedAt(model.getUploadedAt());
         entity.setUser(toEntity(model.getUser()));
         return entity;
@@ -52,7 +51,6 @@ public class YoungLifeUserAndPostMapper {
                 .description(entity.getDescription())
                 .filePath(entity.getFilePath())
                 .contentType(entity.getContentType())
-                .fileData(entity.getFileData())
                 .uploadedAt(entity.getUploadedAt())
                 .user(toModel(entity.getUser()))
                 .build();

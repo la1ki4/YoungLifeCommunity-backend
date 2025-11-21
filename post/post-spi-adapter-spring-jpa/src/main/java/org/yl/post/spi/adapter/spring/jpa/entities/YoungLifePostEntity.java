@@ -24,9 +24,6 @@ public class YoungLifePostEntity {
     private String contentType;
     @Column(name = "file_path")
     private String filePath;
-    @Column(name = "file_data")
-    @Lob
-    private byte[] fileData;
     @Column(name = "uploaded_at")
     private LocalDateTime uploadedAt;
     @ManyToOne(fetch = FetchType.LAZY)

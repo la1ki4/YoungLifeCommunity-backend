@@ -14,7 +14,6 @@ public class YoungLifePostModel {
     private String fileName;
     private String filePath;
     private String contentType;
-    private byte[] fileData;
     private LocalDateTime uploadedAt;
     private YoungLifeUserModel user;
 }
