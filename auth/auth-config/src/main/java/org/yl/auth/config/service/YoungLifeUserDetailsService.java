@@ -7,18 +7,18 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.yl.auth.model.YoungLifeUserModel;
-import org.yl.auth.spring.jpa.login.AuthorizationYoungLifeUserAdapterSpi;
+import org.yl.auth.spring.jpa.adapters.AuthorizationYoungLifeUserSpiAdapter;
 
 import java.util.Collections;
 
 @Service
 @AllArgsConstructor
 public class YoungLifeUserDetailsService  implements UserDetailsService {
-    AuthorizationYoungLifeUserAdapterSpi authorizationYoungLifeUserAdapterSpi;
+    AuthorizationYoungLifeUserSpiAdapter authorizationYoungLifeUserSpiAdapter;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-       YoungLifeUserModel youngLifeUserModel = authorizationYoungLifeUserAdapterSpi.getUserByEmail(email);
+       YoungLifeUserModel youngLifeUserModel = authorizationYoungLifeUserSpiAdapter.getUserByEmail(email);
        if (youngLifeUserModel == null) {
            throw new UsernameNotFoundException("User not found with email: " + email);
        }

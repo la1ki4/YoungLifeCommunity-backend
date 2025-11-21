@@ -1,15 +1,15 @@
-package org.yl.auth.spring.jpa.login;
+package org.yl.auth.spring.jpa.adapters;
 
 import org.springframework.stereotype.Component;
 import org.yl.auth.model.YoungLifeUserModel;
-import org.yl.auth.spi.verifier.YoungLifeUserByEmailSpi;
-import org.yl.auth.spring.jpa.JpaYoungLifeUserRepository;
+import org.yl.auth.spi.login.YoungLifeUserAuthorizationSpi;
+import org.yl.auth.spring.jpa.repositories.JpaYoungLifeUserRepository;
 
 @Component
-public class AuthorizationYoungLifeUserAdapterSpi implements YoungLifeUserByEmailSpi {
+public class AuthorizationYoungLifeUserSpiAdapter implements YoungLifeUserAuthorizationSpi {
     private final JpaYoungLifeUserRepository jpaYoungLifeUserRepository;
 
-    public AuthorizationYoungLifeUserAdapterSpi(JpaYoungLifeUserRepository jpaYoungLifeUserRepository) {
+    public AuthorizationYoungLifeUserSpiAdapter(JpaYoungLifeUserRepository jpaYoungLifeUserRepository) {
         this.jpaYoungLifeUserRepository = jpaYoungLifeUserRepository;
     }
 

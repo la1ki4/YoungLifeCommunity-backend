@@ -1,21 +1,22 @@
-package org.yl.auth.spring.jpa.register;
+package org.yl.auth.spring.jpa.adapters;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.yl.auth.spi.register.RegistrationYoungLifeUserSpi;
-import org.yl.auth.spring.jpa.YoungLifeUserEntity;
+import org.yl.auth.spring.jpa.entities.YoungLifeUserEntity;
 import org.yl.auth.model.YoungLifeUserModel;
-import org.yl.auth.spring.jpa.JpaYoungLifeUserRepository;
+import org.yl.auth.spring.jpa.mappers.YoungLifeUserAndRoleMapper;
+import org.yl.auth.spring.jpa.repositories.JpaYoungLifeUserRepository;
 
 @Component
 @RequiredArgsConstructor
-public class RegistrationYoungLifeUserPersistenceAdapter implements RegistrationYoungLifeUserSpi {
+public class RegisterYoungLifeUserSpiAdapter implements RegistrationYoungLifeUserSpi {
     private final JpaYoungLifeUserRepository jpaYoungLifeUserRepository;
 
     @Override
     public YoungLifeUserModel registerYoungLifeUser(YoungLifeUserModel user) {
-        YoungLifeUserEntity entity = YoungLifeUserEntity.fromModel(user);
+        YoungLifeUserEntity entity = YoungLifeUserAndRoleMapper.fromUserModel(user);
         YoungLifeUserEntity saved = jpaYoungLifeUserRepository.save(entity);
-        return saved.toModel();
+        return YoungLifeUserAndRoleMapper.toUserModel(saved);
     }
 }

@@ -18,7 +18,6 @@ public class ReceiveYoungLifePostController {
     @GetMapping("/feed")
     public Page<YoungLifePostModel> getFeed(@RequestParam(defaultValue = "0") int page,
                                                       @RequestParam(defaultValue = "10") int size) {
-        System.out.println("CONTROLLER page = " + page);
         return receiveAllYoungLifePostsApi.getFeedYoungLifePosts(page, size);
     }
 }

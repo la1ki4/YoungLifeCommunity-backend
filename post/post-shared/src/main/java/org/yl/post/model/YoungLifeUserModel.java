@@ -15,5 +15,4 @@ public class YoungLifeUserModel {
     private String email;
     private String password;
     private Timestamp createdAt;
-    private List<YoungLifePostModel> posts;
 }

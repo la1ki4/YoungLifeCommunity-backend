@@ -3,12 +3,13 @@ package org.yl.auth.usecase.register;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.yl.auth.api.register.RegistrationYoungLifeUserApi;
 import org.yl.auth.model.YoungLifeUserModel;
+import org.yl.auth.role.data.UserRole;
 import org.yl.auth.spi.register.RegistrationYoungLifeUserSpi;
-import org.yl.auth.spi.verifier.YoungLifeUserByEmailSpi;
+import org.yl.auth.spi.login.YoungLifeUserAuthorizationSpi;
 
 import java.sql.Timestamp;
 
-public record RegistrationYoungLifeUserUseCase(YoungLifeUserByEmailSpi userRepository,
+public record RegistrationYoungLifeUserUseCase(YoungLifeUserAuthorizationSpi userRepository,
                                                RegistrationYoungLifeUserSpi registerUserPort,
                                                PasswordEncoder passwordEncoder) implements RegistrationYoungLifeUserApi {
     @Override

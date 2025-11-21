@@ -9,4 +9,10 @@
     <artifactId>auth-shared</artifactId>
     <name>Archetype - auth-shared</name>
     <url>http://maven.apache.org</url>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+    </dependencies>
 </project>
