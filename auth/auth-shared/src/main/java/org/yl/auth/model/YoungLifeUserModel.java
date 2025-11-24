@@ -2,7 +2,6 @@ package org.yl.auth.model;
 
 import lombok.Builder;
 import lombok.Data;
-import org.yl.auth.role.data.UserRole;
 
 import java.sql.Timestamp;
 import java.util.UUID;
@@ -15,6 +14,6 @@ public class YoungLifeUserModel {
     private String lastName;
     private String email;
     private String password;
-    private UserRole userRole;
+    private YoungLifeUserRoleModel userRole;
     private Timestamp createdAt;
 }

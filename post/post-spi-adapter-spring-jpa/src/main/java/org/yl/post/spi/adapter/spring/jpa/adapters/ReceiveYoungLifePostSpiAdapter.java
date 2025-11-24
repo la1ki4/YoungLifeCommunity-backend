@@ -19,6 +19,6 @@ public class ReceiveYoungLifePostSpiAdapter implements ReceiveYoungLifePostSpi {
     @Override
     public Page<YoungLifePostModel> getFeedYoungLifePosts(int page, int size) {
         Page<YoungLifePostEntity> postEntities = youngLifePostRepository.findAll(PageRequest.of(page, size, Sort.by("uploadedAt").descending()));
-        return postEntities.map(YoungLifeUserAndPostMapper::toModel);
+        return postEntities.map(YoungLifeUserAndPostMapper::toPostModel);
     }
 }

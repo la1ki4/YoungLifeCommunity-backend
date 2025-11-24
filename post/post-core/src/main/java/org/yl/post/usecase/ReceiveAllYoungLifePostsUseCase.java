@@ -5,8 +5,6 @@ import org.yl.post.api.ReceiveAllYoungLifePostsApi;
 import org.yl.post.model.YoungLifePostModel;
 import org.yl.post.spi.ReceiveYoungLifePostSpi;
 
-import java.util.Optional;
-
 public record ReceiveAllYoungLifePostsUseCase(ReceiveYoungLifePostSpi youngLifePostSpi) implements ReceiveAllYoungLifePostsApi {
 
     @Override

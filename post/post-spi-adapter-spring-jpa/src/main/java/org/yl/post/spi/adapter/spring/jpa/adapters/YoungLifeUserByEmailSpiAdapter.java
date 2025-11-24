@@ -21,6 +21,6 @@ public class YoungLifeUserByEmailSpiAdapter implements YoungLifeUserByEmailSpi {
         if(user.isEmpty()){
             throw new RuntimeException("User have not found by email");
         }
-        return YoungLifeUserAndPostMapper.toModel(user.get());
+        return YoungLifeUserAndPostMapper.toUserModel(user.get());
     }
 }

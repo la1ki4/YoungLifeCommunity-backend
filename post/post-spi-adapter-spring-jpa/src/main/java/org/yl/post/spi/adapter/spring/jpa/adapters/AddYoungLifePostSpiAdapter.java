@@ -18,8 +18,8 @@ public class AddYoungLifePostSpiAdapter implements AddYoungLifePostSpi {
 
     @Override
     public Optional<YoungLifePostModel> addYoungLifePostSpi(YoungLifePostModel postData) {
-        YoungLifePostEntity postEntity = YoungLifeUserAndPostMapper.toEntity(postData);
+        YoungLifePostEntity postEntity = YoungLifeUserAndPostMapper.toPostEntity(postData);
         YoungLifePostEntity savedPost = youngLifePostRepository.save(postEntity);
-        return Optional.of(YoungLifeUserAndPostMapper.toModel(savedPost));
+        return Optional.of(YoungLifeUserAndPostMapper.toPostModel(savedPost));
     }
 }

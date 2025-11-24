@@ -1,4 +1,4 @@
-package org.yl.auth.spring.jpa.entities;
+package org.yl.post.spi.adapter.spring.jpa.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;

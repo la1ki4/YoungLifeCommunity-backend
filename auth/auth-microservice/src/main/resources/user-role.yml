@@ -1,0 +1,11 @@
+app:
+  security:
+    initial-roles:
+      - role: User
+        priority: 1
+
+      - role: Volunteer
+        priority: 2
+
+      - role: Leader
+        priority: 3

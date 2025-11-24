@@ -6,53 +6,41 @@ import org.yl.post.spi.adapter.spring.jpa.entities.YoungLifeUserEntity;
 
 public class YoungLifeUserAndPostMapper {
 
-    public static YoungLifeUserEntity toEntity(YoungLifeUserModel model) {
+    public static YoungLifeUserEntity toUserEntity(YoungLifeUserModel model) {
         if (model == null) return null;
         YoungLifeUserEntity entity = new YoungLifeUserEntity();
-        entity.setId(model.getId());
-        entity.setEmail(model.getEmail());
         entity.setFirstName(model.getFirstName());
         entity.setLastName(model.getLastName());
-        entity.setPassword(model.getPassword());
-        entity.setCreatedAt(model.getCreatedAt());
+        entity.setUserRole(YoungLifeUserRoleMapper.toUserRoleEntity(model.getUserRole()));
         return entity;
     }
 
-    public static YoungLifeUserModel toModel(YoungLifeUserEntity entity) {
+    public static YoungLifeUserModel toUserModel(YoungLifeUserEntity entity) {
         if (entity == null) return null;
         return YoungLifeUserModel.builder()
-                .id(entity.getId())
-                .email(entity.getEmail())
                 .firstName(entity.getFirstName())
                 .lastName(entity.getLastName())
-                .password(entity.getPassword())
-                .createdAt(entity.getCreatedAt())
+                .userRole(YoungLifeUserRoleMapper.toUserRoleModel(entity.getUserRole()))
                 .build();
     }
 
-    public static YoungLifePostEntity toEntity(YoungLifePostModel model) {
+    public static YoungLifePostEntity toPostEntity(YoungLifePostModel model) {
         if (model == null) return null;
         YoungLifePostEntity entity = new YoungLifePostEntity();
-        entity.setId(model.getId());
         entity.setFileName(model.getFileName());
         entity.setDescription(model.getDescription());
         entity.setFilePath(model.getFilePath());
-        entity.setContentType(model.getContentType());
-        entity.setUploadedAt(model.getUploadedAt());
-        entity.setUser(toEntity(model.getUser()));
+        entity.setUser(toUserEntity(model.getUser()));
         return entity;
     }
 
-    public static YoungLifePostModel toModel(YoungLifePostEntity entity) {
+    public static YoungLifePostModel toPostModel(YoungLifePostEntity entity) {
         if (entity == null) return null;
         return YoungLifePostModel.builder()
-                .id(entity.getId())
                 .fileName(entity.getFileName())
-                .description(entity.getDescription())
                 .filePath(entity.getFilePath())
-                .contentType(entity.getContentType())
-                .uploadedAt(entity.getUploadedAt())
-                .user(toModel(entity.getUser()))
+                .description(entity.getDescription())
+                .user(toUserModel(entity.getUser()))
                 .build();
     }
 }

@@ -3,7 +3,6 @@ package org.yl.auth.spring.jpa.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.yl.auth.model.YoungLifeUserModel;
 
 import java.sql.Timestamp;
 import java.util.UUID;
@@ -24,7 +23,7 @@ public class YoungLifeUserEntity {
     private String email;
     @Column(name="password")
     private String password;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_role_id")
     private YoungLifeUserRoleEntity userRole;
     @Column(name="created_at")

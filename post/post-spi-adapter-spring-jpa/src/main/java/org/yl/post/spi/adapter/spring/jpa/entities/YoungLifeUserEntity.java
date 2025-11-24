@@ -33,6 +33,10 @@ public class YoungLifeUserEntity {
     @Column(name = "created_at")
     private Timestamp createdAt;
 
+    @ManyToOne
+    @JoinColumn(name = "user_role_id")
+    private YoungLifeUserRoleEntity userRole;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<YoungLifePostEntity> posts;
 }

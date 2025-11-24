@@ -34,8 +34,6 @@ public record AddYoungLifePostUseCase (AddYoungLifePostSpi postRepository, Young
 
         return postRepository.addYoungLifePostSpi(YoungLifePostModel.builder()
                         .description(description)
-                        .uploadedAt(LocalDateTime.now())
-                        .contentType(mediaFile.getContentType())
                         .filePath(DOMAIN + filePath)
                         .fileName(fileName)
                         .user(user)
