@@ -11,7 +11,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.Optional;
 
 public record AddYoungLifePostUseCase (AddYoungLifePostSpi postRepository, YoungLifeUserByEmailSpi userRepository) implements AddYoungLifePostApi {
@@ -36,6 +37,8 @@ public record AddYoungLifePostUseCase (AddYoungLifePostSpi postRepository, Young
                         .description(description)
                         .filePath(DOMAIN + filePath)
                         .fileName(fileName)
+                        .contentType(mediaFile.getContentType())
+                        .uploadedAt(Timestamp.from(Instant.now()))
                         .user(user)
                         .build());
     }

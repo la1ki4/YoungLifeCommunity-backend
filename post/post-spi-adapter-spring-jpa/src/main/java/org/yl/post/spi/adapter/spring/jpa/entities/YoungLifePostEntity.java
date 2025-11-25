@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -25,7 +26,7 @@ public class YoungLifePostEntity {
     @Column(name = "file_path")
     private String filePath;
     @Column(name = "uploaded_at")
-    private LocalDateTime uploadedAt;
+    private Timestamp uploadedAt;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private YoungLifeUserEntity user;

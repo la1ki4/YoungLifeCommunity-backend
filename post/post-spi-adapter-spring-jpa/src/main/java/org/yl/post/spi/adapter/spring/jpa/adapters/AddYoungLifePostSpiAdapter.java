@@ -17,8 +17,8 @@ public class AddYoungLifePostSpiAdapter implements AddYoungLifePostSpi {
     private JpaYoungLifePostRepository youngLifePostRepository;
 
     @Override
-    public Optional<YoungLifePostModel> addYoungLifePostSpi(YoungLifePostModel postData) {
-        YoungLifePostEntity postEntity = YoungLifeUserAndPostMapper.toPostEntity(postData);
+    public Optional<YoungLifePostModel> addYoungLifePostSpi(YoungLifePostModel postModel) {
+        YoungLifePostEntity postEntity = YoungLifeUserAndPostMapper.toPostEntity(postModel);
         YoungLifePostEntity savedPost = youngLifePostRepository.save(postEntity);
         return Optional.of(YoungLifeUserAndPostMapper.toPostModel(savedPost));
     }

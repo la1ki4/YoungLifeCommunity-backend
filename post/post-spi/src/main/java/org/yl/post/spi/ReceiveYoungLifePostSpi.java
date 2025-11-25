@@ -1,10 +1,10 @@
 package org.yl.post.spi;
 
 import org.springframework.data.domain.Page;
-import org.yl.post.model.YoungLifePostModel;
+import org.yl.post.data.YoungLifePostData;
 
 
 @FunctionalInterface
 public interface ReceiveYoungLifePostSpi {
-    Page<YoungLifePostModel> getFeedYoungLifePosts(int page, int size);
+    Page<YoungLifePostData> getFeedYoungLifePosts(int page, int size);
 }

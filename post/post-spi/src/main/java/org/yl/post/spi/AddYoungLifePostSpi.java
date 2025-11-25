@@ -5,5 +5,5 @@ import java.util.Optional;
 
 @FunctionalInterface
 public interface AddYoungLifePostSpi {
-    Optional<YoungLifePostModel> addYoungLifePostSpi (YoungLifePostModel postData);
+    Optional<YoungLifePostModel> addYoungLifePostSpi (YoungLifePostModel postModel);
 }
