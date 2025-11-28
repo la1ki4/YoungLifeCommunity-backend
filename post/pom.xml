@@ -19,6 +19,10 @@
         <module>post-spi-adapter-spring-jpa</module>
         <module>post-spi</module>
         <module>post-config</module>
+        <module>post-like-api</module>
+        <module>post-like-api-adapter</module>
+        <module>post-like-spi</module>
+        <module>post-like-spi-adapter</module>
     </modules>
 
     <name>Archetype - post</name>
