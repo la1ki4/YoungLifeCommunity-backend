@@ -2,6 +2,7 @@ package org.yl.post.model;
 
 import lombok.Builder;
 import lombok.Data;
+import org.yl.post.data.YoungLifePostLikeData;
 
 import java.sql.Timestamp;
 import java.util.UUID;
@@ -14,6 +15,7 @@ public class YoungLifePostModel {
     private String fileName;
     private String filePath;
     private String contentType;
+    private PostLikeModel likes;
     private Timestamp uploadedAt;
     private YoungLifeUserModel user;
 }

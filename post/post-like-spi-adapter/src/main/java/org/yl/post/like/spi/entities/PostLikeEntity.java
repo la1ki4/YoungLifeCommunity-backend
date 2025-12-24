@@ -1,11 +1,18 @@
 package org.yl.post.like.spi.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.UUID;
 
 @Entity
-@Table(name="yl_post_like")
+@Getter
+@Setter
+@Table(
+        name = "yl_post_like",
+        uniqueConstraints = @UniqueConstraint(name = "uk_post_user", columnNames = {"post_id", "user_id"})
+)
 public class PostLikeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

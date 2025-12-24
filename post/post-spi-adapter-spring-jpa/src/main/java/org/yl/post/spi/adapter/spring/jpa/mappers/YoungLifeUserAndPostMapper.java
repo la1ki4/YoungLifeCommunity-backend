@@ -57,6 +57,7 @@ public class YoungLifeUserAndPostMapper {
     public static YoungLifePostData toPostData(YoungLifePostModel model) {
         if (model == null) return null;
         return YoungLifePostData.builder()
+                .id(model.getId())
                 .user(toUserData(model.getUser()))
                 .description(model.getDescription())
                 .filePath(model.getFilePath())

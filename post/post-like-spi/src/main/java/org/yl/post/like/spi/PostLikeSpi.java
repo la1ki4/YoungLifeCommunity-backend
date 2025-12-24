@@ -5,5 +5,5 @@ import java.util.Optional;
 
 @FunctionalInterface
 public interface PostLikeSpi {
-    Optional<PostLikeModel> addPostLike(PostLikeModel postLikeModel);
+    Optional<PostLikeModel> togglePostLike(PostLikeModel postLikeModel);
 }

@@ -1,4 +1,11 @@
 package org.yl.post.like.spi.repositories;
 
-public interface JpaPostLikeRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.yl.post.like.spi.entities.PostLikeEntity;
+import java.util.Optional;
+import java.util.UUID;
+
+public interface JpaPostLikeRepository extends JpaRepository<PostLikeEntity, UUID> {
+    Optional<PostLikeEntity> findByPostIdAndUserId(UUID postId, UUID userId);
+    long countByPostId(UUID postId);
 }

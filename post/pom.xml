@@ -23,6 +23,7 @@
         <module>post-like-api-adapter</module>
         <module>post-like-spi</module>
         <module>post-like-spi-adapter</module>
+        <module>post-comment-api</module>
     </modules>
 
     <name>Archetype - post</name>
