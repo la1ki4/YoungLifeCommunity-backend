@@ -24,6 +24,9 @@
         <module>post-like-spi</module>
         <module>post-like-spi-adapter</module>
         <module>post-comment-api</module>
+        <module>post-comment-api-adapter</module>
+        <module>post-comment-spi</module>
+        <module>post-comment-spi-adapter</module>
     </modules>
 
     <name>Archetype - post</name>

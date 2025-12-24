@@ -6,8 +6,8 @@
         <artifactId>post</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>post-comment-api</artifactId>
-    <name>Archetype - post-comment-api</name>
+    <artifactId>post-comment-spi</artifactId>
+    <name>Archetype - post-comment-spi</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>

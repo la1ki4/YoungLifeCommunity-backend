@@ -6,14 +6,25 @@
         <artifactId>post</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>post-comment-api</artifactId>
-    <name>Archetype - post-comment-api</name>
+    <artifactId>post-comment-spi-adapter</artifactId>
+    <name>Archetype - post-comment-spi-adapter</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
             <groupId>org.yl</groupId>
-            <artifactId>post-shared</artifactId>
+            <artifactId>post-comment-spi</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.transaction</groupId>
+            <artifactId>jakarta.transaction-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.yl</groupId>
+            <artifactId>post-comment-api-adapter</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

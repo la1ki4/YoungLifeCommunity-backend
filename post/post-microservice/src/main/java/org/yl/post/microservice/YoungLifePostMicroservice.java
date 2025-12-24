@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.yl.post.api.AddYoungLifePostApi;
 import org.yl.post.api.ReceiveAllYoungLifePostsApi;
+import org.yl.post.comment.api.PostCommentApi;
+import org.yl.post.comment.spi.AddCommentSpi;
 import org.yl.post.like.api.PostLikeCountApi;
 import org.yl.post.like.api.ToggleLikeToPostApi;
 import org.yl.post.like.spi.PostLikeCountSpi;
@@ -16,27 +18,31 @@ import org.yl.post.like.spi.PostLikeSpi;
 import org.yl.post.spi.AddYoungLifePostSpi;
 import org.yl.post.spi.ReceiveYoungLifePostSpi;
 import org.yl.post.spi.YoungLifeUserByEmailSpi;
-import org.yl.post.usecase.AddYoungLifePostUseCase;
-import org.yl.post.usecase.GetPostLikeCountUseCase;
-import org.yl.post.usecase.ReceiveAllYoungLifePostsUseCase;
-import org.yl.post.usecase.ToggleYoungLifePostUseCase;
+import org.yl.post.usecase.*;
 
 import static org.springframework.data.web.config.EnableSpringDataWebSupport.PageSerializationMode.VIA_DTO;
 
 @SpringBootApplication(scanBasePackages = "org.yl.post")
 @EnableJpaRepositories(basePackages = {
         "org.yl.post.spi.adapter.spring.jpa",
-        "org.yl.post.like.spi"
+        "org.yl.post.like.spi",
+        "org.yl.post.comment.spi"
 })
 @EnableFeignClients
 @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO)
 @EntityScan(basePackages = {
         "org.yl.post.spi.adapter.spring.jpa",
-        "org.yl.post.like.spi"
+        "org.yl.post.like.spi",
+        "org.yl.post.comment.spi"
 })
 public class YoungLifePostMicroservice {
     public static void main(String[] args) {
         SpringApplication.run(YoungLifePostMicroservice.class, args);
+    }
+
+    @Bean
+    public PostCommentApi postCommentApi(AddCommentSpi addCommentSpi, YoungLifeUserByEmailSpi userByEmailSpi) {
+        return new AddPostCommentUseCase(addCommentSpi, userByEmailSpi);
     }
 
     @Bean
