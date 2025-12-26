@@ -9,8 +9,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.yl.post.api.AddYoungLifePostApi;
 import org.yl.post.api.ReceiveAllYoungLifePostsApi;
+import org.yl.post.comment.api.GetPostCommentsApi;
 import org.yl.post.comment.api.PostCommentApi;
+import org.yl.post.comment.api.PostCommentCountApi;
 import org.yl.post.comment.spi.AddCommentSpi;
+import org.yl.post.comment.spi.GetCommentsByPostSpi;
+import org.yl.post.comment.spi.PostCommentCountSpi;
 import org.yl.post.like.api.PostLikeCountApi;
 import org.yl.post.like.api.ToggleLikeToPostApi;
 import org.yl.post.like.spi.PostLikeCountSpi;
@@ -39,6 +43,20 @@ public class YoungLifePostMicroservice {
     public static void main(String[] args) {
         SpringApplication.run(YoungLifePostMicroservice.class, args);
     }
+
+    @Bean
+    public PostCommentCountApi postCommentCountApi(PostCommentCountSpi postCommentCountSpi) {
+        return new GetPostCommentCountUseCase(postCommentCountSpi);
+    }
+
+    @Bean
+    public GetPostCommentsApi getPostCommentsApi(
+            GetCommentsByPostSpi getCommentsByPostSpi,
+            YoungLifeUserByEmailSpi userByIdSpi
+    ) {
+        return new GetPostCommentsUseCase(getCommentsByPostSpi, userByIdSpi);
+    }
+
 
     @Bean
     public PostCommentApi postCommentApi(AddCommentSpi addCommentSpi, YoungLifeUserByEmailSpi userByEmailSpi) {
