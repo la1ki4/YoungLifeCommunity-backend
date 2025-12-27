@@ -23,6 +23,9 @@ import org.yl.post.spi.AddYoungLifePostSpi;
 import org.yl.post.spi.ReceiveYoungLifePostSpi;
 import org.yl.post.spi.YoungLifeUserByEmailSpi;
 import org.yl.post.usecase.*;
+import org.yl.post.view.api.PostViewApi;
+import org.yl.post.view.spi.PostViewCountSpi;
+import org.yl.post.view.spi.PostViewSpi;
 
 import static org.springframework.data.web.config.EnableSpringDataWebSupport.PageSerializationMode.VIA_DTO;
 
@@ -30,18 +33,27 @@ import static org.springframework.data.web.config.EnableSpringDataWebSupport.Pag
 @EnableJpaRepositories(basePackages = {
         "org.yl.post.spi.adapter.spring.jpa",
         "org.yl.post.like.spi",
-        "org.yl.post.comment.spi"
+        "org.yl.post.comment.spi",
+        "org.yl.post.view.spi"
 })
 @EnableFeignClients
 @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO)
 @EntityScan(basePackages = {
         "org.yl.post.spi.adapter.spring.jpa",
         "org.yl.post.like.spi",
-        "org.yl.post.comment.spi"
+        "org.yl.post.comment.spi",
+        "org.yl.post.view.spi"
 })
 public class YoungLifePostMicroservice {
     public static void main(String[] args) {
         SpringApplication.run(YoungLifePostMicroservice.class, args);
+    }
+
+    @Bean
+    public PostViewApi postViewApi(PostViewSpi postViewSpi,
+                                   PostViewCountSpi postViewCountSpi,
+                                   YoungLifeUserByEmailSpi userByEmailSpi) {
+        return new AddPostViewUseCase(postViewSpi, postViewCountSpi, userByEmailSpi);
     }
 
     @Bean

@@ -27,6 +27,10 @@
         <module>post-comment-api-adapter</module>
         <module>post-comment-spi</module>
         <module>post-comment-spi-adapter</module>
+        <module>post-view-spi</module>
+        <module>post-view-spi-adapter</module>
+        <module>post-view-api</module>
+        <module>post-view-api-adapter</module>
     </modules>
 
     <name>Archetype - post</name>
