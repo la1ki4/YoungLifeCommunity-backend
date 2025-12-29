@@ -8,4 +8,5 @@ import java.util.UUID;
 public interface JpaPostLikeRepository extends JpaRepository<PostLikeEntity, UUID> {
     Optional<PostLikeEntity> findByPostIdAndUserId(UUID postId, UUID userId);
     long countByPostId(UUID postId);
+    boolean existsByPostIdAndUserId(UUID postId, UUID userId);
 }

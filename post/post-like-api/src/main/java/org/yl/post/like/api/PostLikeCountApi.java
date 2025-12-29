@@ -6,5 +6,5 @@ import java.util.UUID;
 
 @FunctionalInterface
 public interface PostLikeCountApi {
-    PostLikeCountData getLikeInfo(UUID postId);
+    PostLikeCountData getLikeInfo(UUID postId, String userEmail);
 }

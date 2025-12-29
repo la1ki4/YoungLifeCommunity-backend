@@ -18,6 +18,7 @@ import org.yl.post.comment.spi.PostCommentCountSpi;
 import org.yl.post.like.api.PostLikeCountApi;
 import org.yl.post.like.api.ToggleLikeToPostApi;
 import org.yl.post.like.spi.PostLikeCountSpi;
+import org.yl.post.like.spi.PostLikeExistsSpi;
 import org.yl.post.like.spi.PostLikeSpi;
 import org.yl.post.spi.AddYoungLifePostSpi;
 import org.yl.post.spi.ReceiveYoungLifePostSpi;
@@ -81,8 +82,12 @@ public class YoungLifePostMicroservice {
     }
 
     @Bean
-    public PostLikeCountApi postLikeCountApi(PostLikeCountSpi postLikeCountSpi) {
-        return new GetPostLikeCountUseCase(postLikeCountSpi);
+    public PostLikeCountApi postLikeCountApi(
+            PostLikeCountSpi postLikeCountSpi,
+            PostLikeExistsSpi postLikeExistsSpi,
+            YoungLifeUserByEmailSpi userByEmailSpi
+    ) {
+        return new GetPostLikeCountUseCase(postLikeCountSpi, postLikeExistsSpi, userByEmailSpi);
     }
 
 
