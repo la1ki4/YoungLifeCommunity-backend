@@ -13,12 +13,14 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.yl.auth.api.login.AuthUserExceptionsApi;
 import org.yl.auth.api.login.AuthorizationYoungLifeUserApi;
 import org.yl.auth.api.register.RegistrationYoungLifeUserApi;
 import org.yl.auth.config.security.SecurityRoleProperties;
 import org.yl.auth.config.security.YamlPropertySourceFactory;
 import org.yl.auth.spi.register.RegistrationYoungLifeUserSpi;
 import org.yl.auth.spi.login.YoungLifeUserAuthorizationSpi;
+import org.yl.auth.usecase.login.AuthorizationUserExceptionsUseCase;
 import org.yl.auth.usecase.login.AuthorizationYoungLifeUserUseCase;
 import org.yl.auth.usecase.register.RegistrationYoungLifeUserUseCase;
 import org.yl.auth.usecase.roles.YoungLifeUserRoleInitializationUseCase;
@@ -42,6 +44,11 @@ public class YoungLifeCommunityAuthorization implements ApplicationRunner {
 
     public static void main(String[] args) {
         SpringApplication.run(YoungLifeCommunityAuthorization.class, args);
+    }
+
+    @Bean
+    public AuthUserExceptionsApi authUserExceptionsApi(YoungLifeUserAuthorizationSpi userRepository, PasswordEncoder passwordEncoder) {
+        return new AuthorizationUserExceptionsUseCase(userRepository, passwordEncoder);
     }
 
     @Bean
