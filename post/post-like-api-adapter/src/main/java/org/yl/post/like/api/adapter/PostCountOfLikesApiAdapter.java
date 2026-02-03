@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.yl.post.CookiesHolder;
 import org.yl.post.JwtValidator;
-import org.yl.post.data.PostLikeCountData;
 import org.yl.post.like.api.PostLikeCountApi;
 
 import java.util.UUID;
@@ -25,7 +24,7 @@ public class PostCountOfLikesApiAdapter {
     public ResponseEntity<?> getLikeInfo(HttpServletRequest request, @RequestParam UUID postId) {
         String token = CookiesHolder.getJwtTokenFromCookies(request);
         if (token == null) return ResponseEntity.status(401).body("No JWT token");
-        if (!jwtValidator.validateToken(token)) return ResponseEntity.status(401).body("Invalid JWT token");
+        if (jwtValidator.validateToken(token)) return ResponseEntity.status(401).body("Invalid JWT token");
 
         String email = jwtValidator.extractEmail(token);
         return ResponseEntity.ok(postLikeCountApi.getLikeInfo(postId, email));

@@ -12,7 +12,6 @@ import org.yl.post.JwtValidator;
 import org.yl.post.data.YoungLifePostLikeData;
 import org.yl.post.like.api.ToggleLikeToPostApi;
 
-import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -29,7 +28,7 @@ public class ToggleLikeApiAdapter {
             if(token == null){
                 return ResponseEntity.status(401).body("No JWT token found in cookies");
             }
-            if(!jwtValidator.validateToken(token)){
+            if(jwtValidator.validateToken(token)){
                 return ResponseEntity.status(401).body("Invalid JWT token");
             }
             String userEmail = jwtValidator.extractEmail(token);

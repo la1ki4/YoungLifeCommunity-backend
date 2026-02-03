@@ -9,5 +9,4 @@ import java.util.UUID;
 public interface JpaPostViewRepository extends JpaRepository<PostViewEntity, UUID> {
     boolean existsByUserIdAndPostId(UUID userId, UUID postId);
     long countByPostId(UUID postId);
-    Optional<PostViewEntity> findByUserIdAndPostId(UUID userId, UUID postId);
 }

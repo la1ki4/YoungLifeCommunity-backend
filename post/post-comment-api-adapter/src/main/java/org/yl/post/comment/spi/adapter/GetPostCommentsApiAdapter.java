@@ -26,7 +26,7 @@ public class GetPostCommentsApiAdapter {
         try {
             String token = CookiesHolder.getJwtTokenFromCookies(request);
             if (token == null) return ResponseEntity.status(401).body("No JWT token found in cookies");
-            if (!jwtValidator.validateToken(token)) return ResponseEntity.status(401).body("Invalid JWT token");
+            if (jwtValidator.validateToken(token)) return ResponseEntity.status(401).body("Invalid JWT token");
 
             String email = jwtValidator.extractEmail(token);
 

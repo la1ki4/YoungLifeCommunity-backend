@@ -1,4 +1,5 @@
 package org.yl.post;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -29,9 +30,25 @@ public class JwtValidator {
             Jwts.parser()
                     .verifyWith(key).build()
                     .parseSignedClaims(cleanToken(token));
-            return true;
-        } catch (JwtException e) {
             return false;
+        } catch (JwtException e) {
+            return true;
+        }
+    }
+
+    public JwtUserDetails validateUser(String token) {
+        try {
+            Claims claims = Jwts.parser()
+                    .verifyWith(key)
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload();
+
+            return new JwtUserDetails(
+                    claims.getSubject()
+            );
+        } catch (Exception e) {
+            return null;
         }
     }
 
